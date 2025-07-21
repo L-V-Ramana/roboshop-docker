@@ -1,0 +1,40 @@
+networks:
+  default:
+    name: roboshop
+    driver: bridge
+    # external: true if i want to use network from outside which created using docker create network
+services:
+  mongodb:
+    image: ramslella/mongodb:v1
+    container_name: mongodb
+  catalogue:
+    image: ramslella/catalogue:v1
+    container_name: catalogue
+    depends_on: 
+    - mongodb
+  redis:
+    image: ramslella/redis:v1
+    container_name: redis
+  user: 
+    image: ramslella/redis:v1
+    container_name: user
+    depends_on: 
+    - redis
+    - mongodb
+  mysql:
+    image: ramslella/mysql:v1
+    container_name: mysql
+  cart:
+    image: ramslella/cart:v1
+    container_name: cart
+    depends_on:
+    - catalogue
+    - redis
+  shipping:
+    image: ramslella/shipping:v1
+    container_name: shipping
+    depends_on:
+    - mysql
+    - cart
+  
+   
