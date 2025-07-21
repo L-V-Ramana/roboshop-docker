@@ -16,7 +16,7 @@ services:
     image: ramslella/redis:v1
     container_name: redis
   user: 
-    image: ramslella/redis:v1
+    image: redis:v1
     container_name: user
     depends_on: 
     - redis
