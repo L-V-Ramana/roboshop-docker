@@ -58,7 +58,7 @@ services:
     - user
     - rabbitmq
   frontend:
-    image: ramslella/frontend
+    image: ramslella/frontend:v1
     container_name: frontend
     ports:
     - "80:80"
