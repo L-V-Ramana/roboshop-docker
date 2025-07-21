@@ -57,7 +57,7 @@ services:
     - cart
     - user
     - rabbitmq
-  Frontend:
+  frontend:
     image: ramslella/frontend
     container_name: frontend
     ports:
