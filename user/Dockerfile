@@ -3,7 +3,7 @@ WORKDIR /opt/server
 COPY *.json .
 COPY *.js .
 ENV MONGO=true\
-    REDIS_URL='redis://redis:6379'
+    REDIS_URL='redis://redis:6379'\
     MONGO_URL="mongodb://mongodb:27017/users"
 RUN npm install
 CMD ["node","server.js"]
