@@ -14,7 +14,7 @@ services:
     image: ramslella/mongodb:v1
     container_name: mongodb
     volumes:
-    - mongodb:/data/db
+    - mongodb: /data/db
   catalogue:
     image: ramslella/catalogue:v1
     container_name: catalogue
@@ -24,7 +24,7 @@ services:
     image: redis:7.0
     container_name: redis
     volumes:
-    - redis:/data
+    - redis: /data
   user: 
     image: ramslella/user:v1
     container_name: user
