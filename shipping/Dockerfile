@@ -1,6 +1,6 @@
 FROM maven apline:3.21 AS builder
 WORKDIR /opt/server
-COPY /src/main /opt/server
+COPY /src/main /opt/server/src
 COPY pom.xml /opt/server
 COPY db /opt/server
 RUN mvn clean package 
