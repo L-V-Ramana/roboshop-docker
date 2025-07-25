@@ -5,6 +5,7 @@ COPY server.js .
 RUN npm install
 
 FROM node:20-alpine3.21
+EXPOSE 8080
 WORKDIR /opt/server
 ENV MONGO="true"\
     MONGO_URL="mongodb://mongodb:27017/catalogue"

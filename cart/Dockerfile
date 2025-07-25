@@ -5,6 +5,7 @@ COPY *.js /opt/server
 RUN npm install
 
 FROM node:20-alpine3.21
+EXPOSE 8080
 RUN  addgroup -S roboshop && adduser -S roboshop -G roboshop
 ENV REDIS_HOST="redis"\
 ENV CATALOGUE_HOST="catalogue"\
