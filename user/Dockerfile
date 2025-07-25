@@ -4,7 +4,7 @@ COPY package.json /opt/server
 COPY server.js /opt/server
 RUN npm install
 
-FROM node:20-alpine 3.21
+FROM node:20-alpine3.21
 EXPOSE 8080
 WORKDIR /opt/server
 ENV REDIS_URL="redis://redis:6379" \
