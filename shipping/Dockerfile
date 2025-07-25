@@ -1,4 +1,4 @@
-FROM maven-apline:3.21 AS builder
+FROM maven AS builder
 WORKDIR /opt/server
 COPY /src/main /opt/server/src
 COPY pom.xml /opt/server
