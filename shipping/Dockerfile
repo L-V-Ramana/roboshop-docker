@@ -1,8 +1,7 @@
 FROM maven AS builder
 WORKDIR /opt/server
-COPY /src/main /opt/server/src
+COPY src/ /opt/server/src
 COPY pom.xml /opt/server
-COPY db /opt/server/src
 RUN mvn clean package 
 
 
