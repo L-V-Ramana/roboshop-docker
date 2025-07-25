@@ -3,10 +3,18 @@ networks:
     name: roboshop
     driver: bridge
     # external: true if i want to use network from outside which created using docker create network
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq: # docker volume create mongodb
+  
 services:
   mongodb:
     image: ramslella/mongodb:v1
     container_name: mongodb
+    volumes:
+    - mongodb: /data/db
   catalogue:
     image: ramslella/catalogue:v1
     container_name: catalogue
@@ -15,6 +23,8 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - redis: /data
   user: 
     image: ramslella/user:v1
     container_name: user
@@ -24,6 +34,8 @@ services:
   mysql:
     image: ramslella/mysql:v1
     container_name: mysql
+    volumes:
+    - mysql: /var/lib/mysql
   cart:
     image: ramslella/cart:v1
     container_name: cart
@@ -42,6 +54,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
+    volumes:
+    - rabbirmq: /var/lib/rabbitmq
   payment:
     image: ramslella/payment:v1
     container_name: payment
