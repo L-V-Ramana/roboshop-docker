@@ -7,9 +7,10 @@ RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
 FROM python:3.13.5-alpine3.21
 EXPOSE 8080
 WORKDIR /opt/server
-RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 # Runtime dependencies only
 RUN apk add --no-cache pcre
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+
 USER roboshop
 # Copy installed Python packages from builder
 COPY --from=builder /install /usr/local
