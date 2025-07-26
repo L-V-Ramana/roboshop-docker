@@ -1,8 +1,10 @@
-FROM python:3.13.5-alpine3.21
+FROM python:3.9.23-alpine3.22 AS builder
 WORKDIR /build
+# Install build dependencies
 RUN apk add --no-cache python3-dev build-base linux-headers pcre-dev
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
+
 
 FROM python:3.13.5-alpine3.21
 EXPOSE 8080
