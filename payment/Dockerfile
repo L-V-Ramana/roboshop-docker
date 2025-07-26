@@ -1,16 +1,45 @@
-FROM python:3.9
-WORKDIR /opt/server
-EXPOSE 8080
+FROM python:3.13.5-alpine3.21
+WORKDIR /build
+RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
 COPY *.py .
 COPY payment.ini .
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
-# ENV using from compose
-#     CART_HOST=cart\
-#     CART_PORT=8080\
-#     USER_HOST=user\
-#     USER_PORT=8080\
-#     AMQP_HOST=rabbitmq\
-#     AMQP_USER=roboshop\
-#     AMQP_PASS=roboshop123
-CMD ["uwsgi","--ini","payment.ini"]
+RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
+
+FROM python:3.13.5-alpine3.21
+EXPOSE 8080
+WORKDIR /opt/server
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+# Runtime dependencies only
+RUN apk add --no-cache pcre
+ENV CART_HOST="cart"
+ENV CART_PORT="8080"
+ENV USER_HOST="user"
+ENV USER_PORT="8080"
+AMQP_USER="roboshop" \
+AMQP_PASS="roboshop123" 
+USER roboshop
+# Copy installed Python packages from builder
+COPY --from=builder /install /usr/local
+# Copy application code
+COPY --chown=roboshop:roboshop payment.ini .
+COPY --chwon=roboshop:roboshop *.py .
+CMD ["uwsing""--ini" "payment.ini"]
+
+
+# FROM python:3.9
+# WORKDIR /opt/server
+# EXPOSE 8080
+# COPY *.py .
+# COPY payment.ini .
+# COPY requirements.txt .
+# RUN pip3 install -r requirements.txt
+# # ENV using from compose
+# #     CART_HOST=cart\
+# #     CART_PORT=8080\
+# #     USER_HOST=user\
+# #     USER_PORT=8080\
+# #     AMQP_HOST=rabbitmq\
+# #     AMQP_USER=roboshop\
+# #     AMQP_PASS=roboshop123
+# CMD ["uwsgi","--ini","payment.ini"]
