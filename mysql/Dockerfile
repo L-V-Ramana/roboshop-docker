@@ -1,3 +1,3 @@
 FROM mysql:8
-ENV MYSQL_ROOT_PASSWORD = roboshop@1
+ENV MYSQL_ROOT_PASSWORD = RoboShop@1
 COPY db/* /docker-entrypoint-initdb.d
