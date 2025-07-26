@@ -12,12 +12,6 @@ WORKDIR /opt/server
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 # Runtime dependencies only
 RUN apk add --no-cache pcre
-ENV CART_HOST="cart"
-ENV CART_PORT="8080"
-ENV USER_HOST="user"
-ENV USER_PORT="8080"
-AMQP_USER="roboshop" \
-AMQP_PASS="roboshop123" 
 USER roboshop
 # Copy installed Python packages from builder
 COPY --from=builder /install /usr/local
