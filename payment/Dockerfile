@@ -1,6 +1,6 @@
 FROM python:3.13.5-alpine3.21
 WORKDIR /build
-RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
+RUN apk add --no-cache python3-dev build-base linux-headers pcre-dev
 COPY *.py .
 COPY payment.ini .
 COPY requirements.txt .
@@ -14,7 +14,7 @@ RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 RUN apk add --no-cache pcre
 USER roboshop
 # Copy installed Python packages from builder
-COPY --from-builder=/install /usr/local
+COPY --from=builder /install /usr/local
 # Copy application code
 COPY --chown=roboshop:roboshop payment.ini .
 COPY --chown=roboshop:roboshop *.py .
