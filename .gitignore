@@ -40,3 +40,20 @@ terraform.rc
 .terragrunt-cache
 
 testing/
+
+# Docker
+*.tar
+*.log
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Build outputs
+node_modules/
+dist/
+build/
+
+# OS
+.DS_Store
