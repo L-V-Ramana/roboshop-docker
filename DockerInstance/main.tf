@@ -6,7 +6,7 @@ resource"aws_instance""DockerHost"{
         Name = "Docker_instance_roboshop"
     }
 
-    user_data =file(docker.sh)
+    user_data =file("docker.sh")
 }
 
 resource "aws_security_group""docker"{
