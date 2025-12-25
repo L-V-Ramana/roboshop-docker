@@ -1,4 +1,4 @@
-FROM python 3.9
+FROM python:3.9
 WORKDIR /opt/server 
 COPY payment.ini /opt/server
 COPY requirements.txt /opt/server
