@@ -5,6 +5,10 @@ resource"aws_instance""DockerHost"{
     tags={
         Name = "Docker_instance_roboshop"
     }
+    root_block_device {
+      volume_size = 50
+      volume_type = "gp3"
+    }
 
     user_data =file("docker.sh")
 }

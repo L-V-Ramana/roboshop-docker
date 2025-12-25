@@ -5,14 +5,42 @@ networks:
     # external: true #if if already created network manally then use as true
 services:
   catalogue:
-    image: ramslella/catalogue:v1
+    image: ramslella/catalogue:v2
     container_name: catalogue
     depends_on:
-      - catalogue
+      - mongodb
 
   mongodb:
-    image: ramslella/mongod:v1
+    image: ramslella/mongod:v2
     container_name: mongodb
-   
+  
+  redis:
+    image: redis:7.0
+    container_name: redis
+ 
+  user:
+    image: ramslella/user:v2
+    container_name: user
+    depends_on:
+    - mongodb
+    - redis
+  cart:
+    image: ramslella/cart:v2
+    container_name: cart
+    depends_on:
+    - redis
+    - catalogue
+    
+  mysql:
+    image: ramslella/mysql:v2
+    contaier_name: mysql
+  
+  shipping:
+    image: ramslella/shipping:v2
+    container_name: shipping
+    depends_on:
+    - cart
+    - mysql
+
 
   
