@@ -40,12 +40,25 @@ services:
     image: ramslella/mysql:v2
     container_name: mysql
   
+  # shipping:
+  #   image: ramslella/shipping:v2
+  #   container_name: shipping
+  #   depends_on:
+  #   - cart
+  #   - mysql
+
   shipping:
-    image: ramslella/shipping:v2
-    container_name: shipping
-    depends_on:
+  image: ramslella/shipping:v2
+  container_name: shipping
+  depends_on:
     - cart
     - mysql
+  environment:
+    - DB_DRIVER=com.mysql.cj.jdbc.Driver
+    - DB_URL=jdbc:mysql://mysql:3306/shipping?allowPublicKeyRetrieval=true&useSSL=false
+    - DB_USER=root
+    - DB_PASS=your_password_here
+
 
   rabbitmq:
     image: rabbitmq:3
