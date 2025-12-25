@@ -36,9 +36,13 @@ services:
     - redis
     - catalogue
     
-  mysql:
-    image: ramslella/mysql:v2
-    container_name: mysql
+  # mysql:
+  #   image: ramslella/mysql:v2
+  #   container_name: mysql
+
+    mysql:
+      image: joindevops/mysql:v1
+      container_name: mysql
   
   # shipping:
   #   image: ramslella/shipping:v2
