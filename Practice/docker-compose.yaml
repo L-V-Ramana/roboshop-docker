@@ -3,6 +3,8 @@ networks:
     driver: bridge
     name: roboshop
     # external: true #if if already created network manally then use as true
+volumes:
+  rabbitmq:
 
 
 services:
