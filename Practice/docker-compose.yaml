@@ -43,7 +43,27 @@ services:
     - mysql
 
   rabbitmq:
-    image: rabbitmq 3
+    image: ramslella/rabbitmq:v1
+    container_name: rabbitmq
+  
+  payment:
+    image: ramslella/payment:v2
+    container_name: payment
+    depends_on: 
+    - cart
+    - user
+    - rabbitmq
+  frontend:
+    image: ramslella/frontend:v2
+    container_name: frontend
+    ports:
+    - "80:80"
+    depends_on:
+    - catalogue
+    - user
+    - cart
+    - shipping
+    - payment
 
 
   
