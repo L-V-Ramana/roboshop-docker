@@ -65,13 +65,12 @@ services:
 
 
   rabbitmq:
-    image: rabbitmq:3
+    image: ramslella/rabbitmq:v1
     container_name: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
-    volumes:
-    - rabbitmq:/var/lib/rabbitmq
+
   
   payment:
     image: ramslella/payment:v2
