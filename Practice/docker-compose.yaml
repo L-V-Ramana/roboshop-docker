@@ -59,17 +59,17 @@ services:
     - user
     - rabbitmq
  
-  # frontend:
-  #   image: ramslella/frontend:v2
-  #   container_name: frontend
-  #   ports:
-  #   - "80:80"
-  #   depends_on:
-  #   - catalogue
-  #   - user
-  #   - cart
-  #   # - shipping
-  #   # - payment
+  frontend:
+    image: ramslella/frontend:v2
+    container_name: frontend
+    ports:
+    - "80:80"
+    depends_on:
+    - catalogue
+    - user
+    - cart
+    - shipping
+    - payment
 
 
   
