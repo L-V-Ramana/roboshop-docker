@@ -40,35 +40,36 @@ services:
     image: ramslella/mysql:v2
     container_name: mysql
   
-  # shipping:
-  #   image: ramslella/shipping:v2
-  #   container_name: shipping
-  #   depends_on:
-  #   - cart
-  #   - mysql
+  shipping:
+    image: ramslella/shipping:v2
+    container_name: shipping
+    depends_on:
+    - cart
+    - mysql
 
   rabbitmq:
     image: ramslella/rabbitmq:v1
     container_name: rabbitmq
   
-  # payment:
-  #   image: ramslella/payment:v2
-  #   container_name: payment
-  #   depends_on: 
-  #   - cart
-  #   - user
-  #   - rabbitmq
-  frontend:
-    image: ramslella/frontend:v2
-    container_name: frontend
-    ports:
-    - "80:80"
-    depends_on:
-    - catalogue
-    - user
+  payment:
+    image: ramslella/payment:v2
+    container_name: payment
+    depends_on: 
     - cart
-    # - shipping
-    # - payment
+    - user
+    - rabbitmq
+ 
+  # frontend:
+  #   image: ramslella/frontend:v2
+  #   container_name: frontend
+  #   ports:
+  #   - "80:80"
+  #   depends_on:
+  #   - catalogue
+  #   - user
+  #   - cart
+  #   # - shipping
+  #   # - payment
 
 
   
