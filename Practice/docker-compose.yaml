@@ -51,13 +51,13 @@ services:
     image: ramslella/rabbitmq:v1
     container_name: rabbitmq
   
-  payment:
-    image: ramslella/payment:v2
-    container_name: payment
-    depends_on: 
-    - cart
-    - user
-    - rabbitmq
+  # payment:
+  #   image: ramslella/payment:v2
+  #   container_name: payment
+  #   depends_on: 
+  #   - cart
+  #   - user
+  #   - rabbitmq
   frontend:
     image: ramslella/frontend:v2
     container_name: frontend
@@ -68,7 +68,7 @@ services:
     - user
     - cart
     # - shipping
-    - payment
+    # - payment
 
 
   
