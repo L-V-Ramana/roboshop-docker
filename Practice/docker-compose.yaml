@@ -40,12 +40,12 @@ services:
     image: ramslella/mysql:v2
     container_name: mysql
   
-  shipping:
-    image: ramslella/shipping:v2
-    container_name: shipping
-    depends_on:
-    - cart
-    - mysql
+  # shipping:
+  #   image: ramslella/shipping:v2
+  #   container_name: shipping
+  #   depends_on:
+  #   - cart
+  #   - mysql
 
   rabbitmq:
     image: ramslella/rabbitmq:v1
@@ -67,7 +67,7 @@ services:
     - catalogue
     - user
     - cart
-    - shipping
+    # - shipping
     - payment
 
 
