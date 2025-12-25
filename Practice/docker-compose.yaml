@@ -42,5 +42,8 @@ services:
     - cart
     - mysql
 
+  rabbitmq:
+    image: rabbitmq 3
+
 
   
