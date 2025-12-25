@@ -3,16 +3,21 @@ networks:
     driver: bridge
     name: roboshop
     # external: true #if if already created network manally then use as true
+
+
 services:
+
+  mongodb:
+    image: ramslella/mongodb:v2
+    container_name: mongodb
+
   catalogue:
     image: ramslella/catalogue:v2
     container_name: catalogue
     depends_on:
       - mongodb
 
-  mongodb:
-    image: ramslella/mongodb:v2
-    container_name: mongodb
+  
   
   redis:
     image: redis:7.0
