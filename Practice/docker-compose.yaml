@@ -15,7 +15,7 @@ services:
     image: ramslella/catalogue:v2
     container_name: catalogue
     depends_on:
-      - mongodb
+    - mongodb
 
   
   
@@ -48,8 +48,11 @@ services:
     - mysql
 
   rabbitmq:
-    image: ramslella/rabbitmq:v1
+    image: rabbitmq:3
     container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
   
   payment:
     image: ramslella/payment:v2
