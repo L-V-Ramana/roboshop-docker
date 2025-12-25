@@ -33,7 +33,7 @@ services:
     
   mysql:
     image: ramslella/mysql:v2
-    contaier_name: mysql
+    container_name: mysql
   
   shipping:
     image: ramslella/shipping:v2
