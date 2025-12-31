@@ -9,12 +9,11 @@ volumes:
   mongodb:
   redis:
 services:
-
   mongodb:
     image: ramslella/mongodb:v2
     container_name: mongodb
     volumes:
-    - mongodb: /data/db
+    - mongodb:/data/db
 
   catalogue:
     image: ramslella/catalogue:v2
@@ -29,7 +28,7 @@ services:
     image: redis:7.0
     container_name: redis
     volumes:
-    - redis: /data
+    - redis:/data
  
   user:
     image: ramslella/user:v2
@@ -48,7 +47,7 @@ services:
     image: ramslella/mysql:v2
     container_name: mysql
     volumes:
-    - mysql: /var/lib/mysql
+    - mysql:/var/lib/mysql
 
   # mysql:
   #   image: joindevops/mysql:v1
