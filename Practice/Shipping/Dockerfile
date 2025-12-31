@@ -15,7 +15,7 @@
 
 FROM maven AS builder
 WORKDIR /opt/server
-COPY  src /opt/server/srcx
+COPY  src /opt/server/src
 COPY pom.xml /opt/server
 RUN mvn clean package 
 # RUN mv target/shipping-1.0.jar shipping.jar 
