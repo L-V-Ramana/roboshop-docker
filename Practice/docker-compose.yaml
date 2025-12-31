@@ -19,9 +19,9 @@ services:
   catalogue:
     image: ramslella/catalogue:v2
     container_name: catalogue
-    environment:
-    - MONGO=true
-    - MONGO_URL="mongodb://mongodb:27017/catalogue"
+    # environment:
+    # - MONGO=true
+    # - MONGO_URL="mongodb://mongodb:27017/catalogue"
     depends_on:
     - mongodb
   
