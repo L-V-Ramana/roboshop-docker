@@ -17,9 +17,9 @@
 
 
 
-FROM python:3.9.25-alpine3.22
+FROM python:3.9
 WORKDIR /opt/server
-RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+# RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 ENV CART_HOST="cart" \
 CART_PORT="8080" \
 USER_HOST="user" \
