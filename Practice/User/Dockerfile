@@ -14,7 +14,7 @@ FROM node:20-alpine3.22
 WORKDIR /opt/server
 COPY package.json /opt/server
 COPY server.js /opt/server
-RUN nom install
+RUN npm install
 
 FROM node:20-alpine3.22
 WORKDIR /opt/server
