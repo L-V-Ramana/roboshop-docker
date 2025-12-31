@@ -24,7 +24,7 @@ COPY *.py /opt/server
 COPY requirements.txt /opt/server
 RUN pip3 install -r requirements.txt
 
-FROM 3.14.2-alpine3.22
+FROM python:3.14.2-alpine3.22
 # RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 ENV CART_HOST="cart" \
 CART_PORT="8080" \
