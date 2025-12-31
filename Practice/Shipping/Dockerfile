@@ -13,7 +13,7 @@
 # CMD ["java","-jar","shipping.jar"]
 
 
-FROM maven:3.5-alpine AS builder
+FROM maven AS builder
 WORKDIR /opt/server
 COPY  src /opt/server
 COPY pom.xml /opt/server
