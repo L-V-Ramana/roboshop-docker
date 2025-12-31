@@ -14,12 +14,8 @@
 # AMQP_PASS="roboshop123"
 # CMD ["uwsgi","--ini","payment.ini"]
 
-FROM python:3.9.25-alpine3.22 AS builder
-WORKDIR /opt/server
-COPY payment.ini /opt/server
-COPY *.py /opt/server
-COPY requirements.txt /opt/server
-RUN pip3 install -r requirements.txt
+
+
 
 FROM python:3.9.25-alpine3.22
 WORKDIR /opt/server
@@ -31,6 +27,10 @@ USER_PORT="8080" \
 AMQP_HOST="rabbitmq" \
 AMQP_USER="roboshop" \
 AMQP_PASS="roboshop123"
+COPY payment.ini /opt/server
+COPY *.py /opt/server
+COPY requirements.txt /opt/server
+RUN pip3 install -r requirements.txt
 USER roboshop
-COPY --from=builder /opt/server /opt/server
+
 CMD ["uwsgi","--ini","payment.ini"]
