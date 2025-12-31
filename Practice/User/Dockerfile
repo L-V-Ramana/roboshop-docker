@@ -23,4 +23,4 @@ ENV REDIS_URL='redis://redis:6379' \
 MONGO_URL="mongodb://mongodb:27017/users"
 USER roboshop
 COPY --from=builder /opt/server /opt/server
-CMD ["/bin/node","/app/server.js"]
+CMD ["node","server.js"]
