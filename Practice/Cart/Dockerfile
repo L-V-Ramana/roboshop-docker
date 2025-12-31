@@ -15,7 +15,7 @@ COPY *.json /opt/server
 COPY *.js /opt/server
 RUN npm install
 
-FROM node:20-alpine3.22 AS builder
+FROM node:20-alpine3.22 
 WORKDIR /opt/server
 RUN addgroup -S roboshop && adduser -S orboshop -G roboshop
 ENV REDIS_HOST="redis" \
