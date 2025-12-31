@@ -1,15 +1,36 @@
-FROM python:3.9
-WORKDIR /opt/server 
+# FROM python:3.9
+# WORKDIR /opt/server 
+# COPY payment.ini /opt/server
+# COPY requirements.txt /opt/server
+# COPY *.py /opt/server
+# RUN pip3 install -r requirements.txt
+# #we can set the envronmnet in the Dockerfile or dockercompose for payment and rabbotmq siva has set env in docker compose
+# ENV CART_HOST="cart"\     
+# CART_PORT="8080"\ 
+# USER_HOST="user"\
+# USER_PORT="8080"\
+# AMQP_HOST="rabbitmq"\
+# AMQP_USER="roboshop"\
+# AMQP_PASS="roboshop123"
+# CMD ["uwsgi","--ini","payment.ini"]
+
+FROM python:3.9.25-alpine3.22 AS builder
+WORKDIR /opt/server
 COPY payment.ini /opt/server
-COPY requirements.txt /opt/server
 COPY *.py /opt/server
+COPY requirements.txt /opt/server
 RUN pip3 install -r requirements.txt
-#we can set the envronmnet in the Dockerfile or dockercompose for payment and rabbotmq siva has set env in docker compose
-ENV CART_HOST="cart"\     
-CART_PORT="8080"\ 
-USER_HOST="user"\
-USER_PORT="8080"\
-AMQP_HOST="rabbitmq"\
-AMQP_USER="roboshop"\
+
+FROM python:3.9.25-alpine3.22
+WORKDIR /opt/server
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+ENV CART_HOST="cart" \
+CART_PORT="8080" \
+USER_HOST="user" \
+USER_PORT="8080" \
+AMQP_HOST="rabbitmq" \
+AMQP_USER="roboshop" \
 AMQP_PASS="roboshop123"
+USER roboshop
+COPY --from=builder /opt/server /opt/server
 CMD ["uwsgi","--ini","payment.ini"]
