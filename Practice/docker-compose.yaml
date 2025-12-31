@@ -75,7 +75,7 @@ services:
 
 
   rabbitmq:
-    image: ramslella/rabbitmq:v1
+    image: rabbitmq:3
     container_name: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
