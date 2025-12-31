@@ -31,6 +31,5 @@ COPY payment.ini /opt/server
 COPY *.py /opt/server
 COPY requirements.txt /opt/server
 RUN pip3 install -r requirements.txt
-USER roboshop
-
+# USER roboshop
 CMD ["uwsgi","--ini","payment.ini"]
