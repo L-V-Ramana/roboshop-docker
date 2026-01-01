@@ -54,7 +54,13 @@ RUN pip install --no-cache-dir --prefix=/install uwsgi
 FROM python:3.11-alpine3.19
 
 WORKDIR /app
-
+ENV CART_HOST="cart" \
+CART_PORT="8080" \
+USER_HOST="user" \
+USER_PORT="8080" \  
+AMQP_HOST="rabbitmq" \
+AMQP_USER="roboshop" \
+AMQP_PASS="roboshop123"
 # Copy only installed dependencies from builder stage
 COPY --from=builder /install /usr/local
 
